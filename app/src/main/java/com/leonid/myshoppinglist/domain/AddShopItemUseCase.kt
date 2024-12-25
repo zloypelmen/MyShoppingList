@@ -1,7 +1,8 @@
 package com.leonid.myshoppinglist.domain
 
-class AddShopItemUseCase {
-    fun addShopItem(shopItem: ShopItem){
-        TODO()
+class AddShopItemUseCase(private val shopListRepository: ShopListRepository) {
+
+    fun addShopItem(shopItem: ShopItem) {
+        shopListRepository.addShopItem(shopItem)
     }
 }
