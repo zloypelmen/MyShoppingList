@@ -1,11 +1,13 @@
 package com.leonid.myshoppinglist.presentation
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.leonid.myshoppinglist.R
+import com.leonid.myshoppinglist.domain.ShopItem
 
 class MainActivity : AppCompatActivity() {
 
@@ -41,6 +43,16 @@ class MainActivity : AppCompatActivity() {
                 ShopListAdapter.MAX_POOL_SIZE
             )
         }
+        shopListAdapter.onShopItemLongClickListener = object : ShopListAdapter.OnShopItemLongClickListener{
+            override fun onShopItemLongClick(shopItem: ShopItem) {
+                viewModel.changeEnableState(shopItem)
+            }
+        }
 
+        shopListAdapter.onShopItemClickListener = object : ShopListAdapter.OnShopItemClickListener{
+            override fun onShopItemClick(shopItem: ShopItem) {
+                Log.d(TAG, shopItem.toString())
+            }
+        }
     }
 }

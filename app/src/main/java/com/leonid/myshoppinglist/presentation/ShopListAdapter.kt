@@ -11,11 +11,16 @@ import com.leonid.myshoppinglist.domain.ShopItem
 
 class ShopListAdapter : RecyclerView.Adapter<ShopListAdapter.ShopItemViewHolder>() {
 
+    private val TAG = ShopListAdapter::class.java.simpleName
+
     var shopList = listOf<ShopItem>()
         set(value) {
             field = value
             notifyDataSetChanged()
         }
+
+    var onShopItemLongClickListener: OnShopItemLongClickListener? = null
+    var onShopItemClickListener: OnShopItemClickListener? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ShopItemViewHolder {
         val layout = when (viewType) {
@@ -42,12 +47,26 @@ class ShopListAdapter : RecyclerView.Adapter<ShopListAdapter.ShopItemViewHolder>
         viewHolder.tvName.text = shopItem.name
         viewHolder.tvCount.text = shopItem.count.toString()
         viewHolder.view.setOnLongClickListener {
+            onShopItemLongClickListener?.onShopItemLongClick(shopItem)
             true
+        }
+        viewHolder.view.setOnClickListener {
+            onShopItemClickListener?.onShopItemClick(shopItem)
         }
     }
 
     override fun getItemCount(): Int {
         return shopList.count()
+    }
+
+    interface OnShopItemLongClickListener {
+
+        fun onShopItemLongClick(shopItem: ShopItem)
+    }
+
+    interface OnShopItemClickListener {
+
+        fun onShopItemClick(shopItem: ShopItem)
     }
 
     companion object {
