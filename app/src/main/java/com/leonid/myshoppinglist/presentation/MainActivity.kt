@@ -73,50 +73,6 @@ class MainActivity : AppCompatActivity() {
                     val shopItem = shopListAdapter.shopList[viewHolder.adapterPosition]
                     viewModel.deleteShopItem(shopItem)
                 }
-
-                override fun onChildDraw(
-                    c: Canvas,
-                    recyclerView: RecyclerView,
-                    viewHolder: RecyclerView.ViewHolder,
-                    dX: Float,
-                    dY: Float,
-                    actionState: Int,
-                    isCurrentlyActive: Boolean
-                ) {
-                    val itemView = viewHolder.itemView
-
-                    val background = ColorDrawable(Color.RED)
-                    val cornerRadius = 16f
-                    background.setBounds(
-                        itemView.right + dX.toInt(), itemView.top,
-                        itemView.right, itemView.bottom
-                    )
-
-                    val paint = Paint().apply {
-                        isAntiAlias = true
-                        color = Color.RED
-                        pathEffect = PathEffect()
-                    }
-
-                    val rect = RectF(
-                        itemView.right + dX, itemView.top.toFloat(),
-                        itemView.right.toFloat(), itemView.bottom.toFloat()
-                    )
-                    c.drawRoundRect(rect, cornerRadius, cornerRadius, paint)
-
-                    val icon = ContextCompat.getDrawable(viewHolder.itemView.context, android.R.drawable.ic_menu_delete)
-                    icon?.let {
-                        val iconMargin = (itemView.height - it.intrinsicHeight) / 2
-                        val iconLeft = itemView.right - it.intrinsicWidth - iconMargin
-                        val iconRight = itemView.right - iconMargin
-                        val iconTop = itemView.top + (itemView.height - it.intrinsicHeight) / 2
-                        val iconBottom = iconTop + it.intrinsicHeight
-                        it.setBounds(iconLeft, iconTop, iconRight, iconBottom)
-                        it.draw(c)
-                    }
-
-                    super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
-                }
             }
 
         val itemTouchHelper = ItemTouchHelper(itemTouchHelperCallback)
