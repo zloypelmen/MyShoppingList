@@ -1,4 +1,4 @@
-package com.leonid.myshoppinglist.presentation.main_screen
+package com.leonid.myshoppinglist.presentation
 
 import android.os.Bundle
 import android.util.Log
@@ -10,8 +10,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.leonid.myshoppinglist.R
 import com.leonid.myshoppinglist.domain.ShopItem
-import com.leonid.myshoppinglist.presentation.item_screen.ShopItemActivity
-import com.leonid.myshoppinglist.presentation.main_screen.adapter.ShopListAdapter
+import com.leonid.myshoppinglist.presentation.shop_item_form.ShopItemActivity
+import com.leonid.myshoppinglist.presentation.adapter.ShopListAdapter
 
 class MainActivity : AppCompatActivity() {
 

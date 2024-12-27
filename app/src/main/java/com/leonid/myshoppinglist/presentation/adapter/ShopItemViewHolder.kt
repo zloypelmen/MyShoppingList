@@ -1,4 +1,4 @@
-package com.leonid.myshoppinglist.presentation.main_screen.adapter
+package com.leonid.myshoppinglist.presentation.adapter
 
 import android.view.View
 import android.widget.TextView

@@ -1,4 +1,4 @@
-package com.leonid.myshoppinglist.presentation.main_screen
+package com.leonid.myshoppinglist.presentation
 
 import androidx.lifecycle.ViewModel
 import com.leonid.myshoppinglist.data.ShopListRepositoryImpl

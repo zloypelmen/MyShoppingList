@@ -1,4 +1,4 @@
-package com.leonid.myshoppinglist.presentation.item_screen
+package com.leonid.myshoppinglist.presentation.shop_item_form
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

@@ -1,4 +1,4 @@
-package com.leonid.myshoppinglist.presentation.item_screen
+package com.leonid.myshoppinglist.presentation.shop_item_form
 
 import android.content.Context
 import android.content.Intent
