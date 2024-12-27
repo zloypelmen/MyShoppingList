@@ -1,22 +1,17 @@
-package com.leonid.myshoppinglist.presentation
+package com.leonid.myshoppinglist.presentation.main_screen
 
-import android.graphics.Canvas
-import android.graphics.Color
-import android.graphics.Paint
-import android.graphics.PathEffect
-import android.graphics.RectF
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.leonid.myshoppinglist.R
 import com.leonid.myshoppinglist.domain.ShopItem
+import com.leonid.myshoppinglist.presentation.item_screen.ShopItemActivity
+import com.leonid.myshoppinglist.presentation.main_screen.adapter.ShopListAdapter
 
 class MainActivity : AppCompatActivity() {
 
@@ -48,15 +43,13 @@ class MainActivity : AppCompatActivity() {
 
         shopListAdapter = ShopListAdapter()
 
-        with(rvShopList){
+        with(rvShopList) {
             adapter = shopListAdapter
             recycledViewPool.setMaxRecycledViews(
-                ShopListAdapter.VIEW_TYPE_ENABLED,
-                ShopListAdapter.MAX_POOL_SIZE
+                ShopListAdapter.VIEW_TYPE_ENABLED, ShopListAdapter.MAX_POOL_SIZE
             )
             recycledViewPool.setMaxRecycledViews(
-                ShopListAdapter.VIEW_TYPE_DISABLED,
-                ShopListAdapter.MAX_POOL_SIZE
+                ShopListAdapter.VIEW_TYPE_DISABLED, ShopListAdapter.MAX_POOL_SIZE
             )
         }
 

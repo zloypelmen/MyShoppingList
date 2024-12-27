@@ -1,4 +1,4 @@
-package com.leonid.myshoppinglist.presentation
+package com.leonid.myshoppinglist.presentation.item_screen
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -17,7 +17,7 @@ class ShopItemViewModel : ViewModel() {
     private val _shouldCloseScreen = MutableLiveData<Unit>()
 
     val errorInputName: LiveData<Boolean>
-        get() =_errorInputName
+        get() = _errorInputName
 
     val errorInputCount: LiveData<Boolean>
         get() = _errorInputCount
@@ -43,7 +43,7 @@ class ShopItemViewModel : ViewModel() {
         val shopItemName = parseName(inputName)
         val shopItemCount = parseCount(inputCount)
         val isFieldValid = validateInput(shopItemName, shopItemCount)
-        if (isFieldValid){
+        if (isFieldValid) {
             val shopItem = ShopItem(shopItemName, shopItemCount, true)
             addShopItemUseCase.addShopItem(shopItem)
             setShouldCloseScreen()
@@ -54,7 +54,7 @@ class ShopItemViewModel : ViewModel() {
         val shopItemName = parseName(inputName)
         val shopItemCount = parseCount(inputCount)
         val isFieldValid = validateInput(shopItemName, shopItemCount)
-        if (isFieldValid){
+        if (isFieldValid) {
             _shopItem.value?.let {
                 val item = it.copy(name = shopItemName, count = shopItemCount)
                 editShopItemUseCase.editShopItem(item)

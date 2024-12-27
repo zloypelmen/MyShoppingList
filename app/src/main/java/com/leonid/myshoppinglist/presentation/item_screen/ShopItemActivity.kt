@@ -1,4 +1,4 @@
-package com.leonid.myshoppinglist.presentation
+package com.leonid.myshoppinglist.presentation.item_screen
 
 import android.content.Context
 import android.content.Intent
@@ -6,8 +6,6 @@ import android.os.Bundle
 import android.util.Log
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.leonid.myshoppinglist.R
 
 class ShopItemActivity : AppCompatActivity() {
