@@ -1,21 +1,17 @@
 package com.leonid.myshoppinglist.presentation
 
-import android.graphics.Canvas
-import android.graphics.Color
-import android.graphics.Paint
-import android.graphics.PathEffect
-import android.graphics.RectF
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.leonid.myshoppinglist.R
 import com.leonid.myshoppinglist.domain.ShopItem
+import com.leonid.myshoppinglist.presentation.shop_item_form.ShopItemActivity
+import com.leonid.myshoppinglist.presentation.adapter.ShopListAdapter
 
 class MainActivity : AppCompatActivity() {
 
@@ -33,6 +29,13 @@ class MainActivity : AppCompatActivity() {
         viewModel.shopList.observe(this) {
             shopListAdapter.submitList(it)
         }
+
+        val buttonAddItem = findViewById<FloatingActionButton>(R.id.button_add_shop_item)
+
+        buttonAddItem.setOnClickListener {
+            val intent = ShopItemActivity.newIntentAddItem(this)
+            startActivity(intent)
+        }
     }
 
     private fun setupRecyclerView() {
@@ -40,15 +43,13 @@ class MainActivity : AppCompatActivity() {
 
         shopListAdapter = ShopListAdapter()
 
-        with(rvShopList){
+        with(rvShopList) {
             adapter = shopListAdapter
             recycledViewPool.setMaxRecycledViews(
-                ShopListAdapter.VIEW_TYPE_ENABLED,
-                ShopListAdapter.MAX_POOL_SIZE
+                ShopListAdapter.VIEW_TYPE_ENABLED, ShopListAdapter.MAX_POOL_SIZE
             )
             recycledViewPool.setMaxRecycledViews(
-                ShopListAdapter.VIEW_TYPE_DISABLED,
-                ShopListAdapter.MAX_POOL_SIZE
+                ShopListAdapter.VIEW_TYPE_DISABLED, ShopListAdapter.MAX_POOL_SIZE
             )
         }
 
@@ -83,6 +84,8 @@ class MainActivity : AppCompatActivity() {
         shopListAdapter.onShopItemClickListener = object : ShopListAdapter.OnShopItemClickListener {
             override fun onShopItemClick(shopItem: ShopItem) {
                 Log.d(TAG, shopItem.toString())
+                val intent = ShopItemActivity.newIntentEditItem(this@MainActivity, shopItem.id)
+                startActivity(intent)
             }
         }
     }

@@ -3,6 +3,7 @@ package com.leonid.myshoppinglist.domain
 import androidx.lifecycle.LiveData
 
 interface ShopListRepository {
+
     fun addShopItem(shopItem: ShopItem)
 
     fun deleteShopItem(shopItem: ShopItem)
