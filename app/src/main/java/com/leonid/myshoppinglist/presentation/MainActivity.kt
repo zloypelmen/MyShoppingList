@@ -1,9 +1,7 @@
 package com.leonid.myshoppinglist.presentation
 
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentContainerView
@@ -13,8 +11,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.leonid.myshoppinglist.R
 import com.leonid.myshoppinglist.domain.ShopItem
-import com.leonid.myshoppinglist.presentation.shop_item_form.ShopItemActivity
 import com.leonid.myshoppinglist.presentation.adapter.ShopListAdapter
+import com.leonid.myshoppinglist.presentation.shop_item_form.ShopItemActivity
 import com.leonid.myshoppinglist.presentation.shop_item_form.ShopItemFragment
 
 class MainActivity : AppCompatActivity(), ShopItemFragment.OnEditingFinishedListener {
@@ -105,8 +103,13 @@ class MainActivity : AppCompatActivity(), ShopItemFragment.OnEditingFinishedList
     private fun setupSimpleClickListener() {
         shopListAdapter.onShopItemClickListener = object : ShopListAdapter.OnShopItemClickListener {
             override fun onShopItemClick(shopItem: ShopItem) {
-                val intent = ShopItemActivity.newIntentEditItem(this@MainActivity, shopItem.id)
-                startActivity(intent)
+                if (isOnePaneMode()) {
+                    val intent = ShopItemActivity.newIntentEditItem(this@MainActivity, shopItem.id)
+                    startActivity(intent)
+                }
+                else {
+                    launchFragment(ShopItemFragment.newInstanceEditItem(shopItem.id))
+                }
             }
         }
     }
